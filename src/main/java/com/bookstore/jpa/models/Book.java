@@ -3,6 +3,8 @@ package com.bookstore.jpa.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_book")
@@ -19,6 +21,10 @@ public class Book implements Serializable {
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
+
+    @ManyToMany
+    @JoinTable(name = "tb_book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors = new HashSet<>();
 
     public Book(Long id, String title, Publisher publisher) {
         this.id = id;

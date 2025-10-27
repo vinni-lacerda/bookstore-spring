@@ -1,5 +1,6 @@
 package com.bookstore.jpa.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,7 +19,8 @@ public class Author implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Book> books = new HashSet<>();
 
     public Author(Long id, String name, Set<Book> books) {
