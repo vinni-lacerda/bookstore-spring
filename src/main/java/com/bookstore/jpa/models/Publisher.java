@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "tb_publisher")
 public class Publisher implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -13,10 +15,10 @@ public class Publisher implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany
-    @JoinColumn()
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     private Set<Book> books = new HashSet<>();
 
     public Publisher(Long id, String name, Set<Book> books) {

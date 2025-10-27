@@ -16,9 +16,14 @@ public class Book implements Serializable {
     @Column(nullable = false, unique = true)
     private String title;
 
-    public Book(Long id, String title) {
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    public Book(Long id, String title, Publisher publisher) {
         this.id = id;
         this.title = title;
+        this.publisher = publisher;
     }
 
     public Book() {
@@ -32,5 +37,13 @@ public class Book implements Serializable {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
