@@ -26,6 +26,9 @@ public class Book implements Serializable {
     @JoinTable(name = "tb_book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    private Review review;
+
     public Book(Long id, String title, Publisher publisher) {
         this.id = id;
         this.title = title;
@@ -51,5 +54,9 @@ public class Book implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
     }
 }
