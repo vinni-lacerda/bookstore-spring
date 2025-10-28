@@ -29,10 +29,11 @@ public class Book implements Serializable {
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
     private Review review;
 
-    public Book(Long id, String title, Publisher publisher) {
+    public Book(Long id, String title, Publisher publisher, Review review) {
         this.id = id;
         this.title = title;
         this.publisher = publisher;
+        this.review = review;
     }
 
     public Book() {
@@ -58,5 +59,17 @@ public class Book implements Serializable {
 
     public Set<Author> getAuthors() {
         return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
     }
 }

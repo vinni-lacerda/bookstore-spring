@@ -27,6 +27,9 @@ public class Publisher implements Serializable {
         this.books = books;
     }
 
+    public Publisher() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -27,6 +27,9 @@ public class Review implements Serializable {
         this.book = book;
     }
 
+    public Review() {
+    }
+
     public Long getId() {
         return id;
     }
